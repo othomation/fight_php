@@ -1,0 +1,141 @@
+:root {
+	--colorOne: tomato;
+	--colorTwo: seagreen;
+	--radius: 0.2em;
+}
+
+/**
+SECTIONS
+**/
+section#rounds {
+	min-width: 70vw;
+	max-width: 80vw;
+	margin: 0 auto;
+}
+
+section#players {
+	display: flex;
+	justify-content: space-evenly;
+}
+
+/**
+HELPERS
+**/
+.message {
+	padding: 1em 0.5em;
+}
+
+.message--info {
+	background-color: rgb(132, 218, 221);
+}
+
+.message--danger {
+	background-color: red;
+}
+
+/**
+ROUNDS RELATED COMPONENTS
+**/
+.card--round {
+	box-shadow: 0 0 8px 0px #b1b1b1;
+
+	padding: 0 0 1em 0;
+	margin: 1.5em;
+
+	border-radius: var(--radius);
+}
+
+.card--round__head {
+	display: block;
+
+	text-align: center;
+
+	color: white;
+
+	padding: var(--radius);
+}
+
+.card--round__body {
+	padding: 1em;
+}
+
+.card--round__footer {
+	padding: 0em 0 0 1em;
+}
+
+/**
+WIN CARD
+**/
+.player--win {
+	text-align: center;
+	font-weight: bold;
+	font-size: 3rem;
+
+	border-radius: var(--radius);
+
+	color: white;
+
+	padding: 2em;
+	margin: 1em;
+}
+
+/**
+PLAYERS CARD AT FIRST
+**/
+.player__card {
+	min-width: 40vw;
+
+	padding: var(--radius);
+	margin: 0.5rem;
+
+	color: white;
+
+	border-radius: var(--radius);
+}
+
+.player__card > b {
+	display: block;
+
+	text-align: center;
+	font-size: 2em;
+}
+
+.player__card > em {
+	text-align: center;
+	display: block;
+}
+
+ul {
+	display: flex;
+	flex-direction: column;
+
+	padding: 0;
+
+	list-style: none;
+}
+
+.prop {
+	display: flex;
+	justify-content: space-between;
+
+	padding: var(--radius);
+}
+
+.prop b {
+	text-align: end;
+}
+
+/**
+SPECIFIC
+**/
+.card--round__head--two,
+.player--win--two,
+.player__card--two {
+	background: var(--colorTwo);
+}
+
+.card--round__head--one,
+.player--win--one,
+.player__card--one {
+	background: var(--colorOne);
+}
