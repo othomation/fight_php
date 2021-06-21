@@ -27,7 +27,11 @@ class Game {
 
 			$attackedAlive = $attacker->attack($attacked);
 
-			$this->componentQueue->addComponent(Helpers::getPlayerCardAttack($attacker, $attacked, $this->playerRepository->isPlayerOne($attacker)));
+			$this->componentQueue->addComponent(
+				Helpers::getPlayerCardAttack(
+					$attacker, $attacked, $this->playerRepository->isPlayerOne($attacker)
+					)
+			);
 
 			if (!$attackedAlive) {
 				$winner = $attacker;
