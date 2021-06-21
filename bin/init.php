@@ -15,3 +15,5 @@ if (Helpers::validatePost($_POST)) {
 }
 
 $game = new Game(new PlayerRepository($playerOne, $playerTwo), new ComponentsRepository());
+Helpers::getPlayerCard($playerOne, 'one');
+Helpers::getPlayerCard($playerOne, 'two');
