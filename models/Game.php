@@ -22,8 +22,8 @@ class Game {
 		while ($this->state) {
 			$playersByRole = $this->playerRepository->getRandomRoles();
 
-			$attacker = $playersByRole[IS_ATTACKING];
-			$attacked = $playersByRole[IS_HIT];
+			$attacker = $playersByRole[ATTACKER];
+			$attacked = $playersByRole[ATTACKED];
 
 			$attackedAlive = $attacker->attack($attacked);
 

@@ -1,6 +1,9 @@
 <?php
-define('PLAYERS','PLAYERS');
+define('PLAYERS', 'PLAYERS');
 define('PLAYER_ONE', 'PLAYER_ONE');
 define('PLAYER_TWO', 'PLAYER_TWO');
-define('IS_ATTACKING', 'IS_ATTACKING');
-define('IS_HIT', 'IS_HIT');
+define('shoutVictory', 'shoutVictory');
+define('shoutHit', 'shoutHit');
+
+define('ATTACKER', 'ATTACKER');
+define('ATTACKED', 'ATTACKED');

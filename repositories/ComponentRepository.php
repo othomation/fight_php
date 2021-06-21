@@ -6,7 +6,6 @@
  * pour pouvoir 'rollback' à l'été précedent ()
  */
 class ComponentsRepository {
-	private $baseQueue = [];
 	private array $queue = [];
 	private $result = null;
 
@@ -18,7 +17,7 @@ class ComponentsRepository {
 			array_push($this->queue, $component);
 		}
 	}
-	
+
 	public function setResult(string $component) {
 		$this->result = $component;
 	}

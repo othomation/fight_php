@@ -1,38 +1,19 @@
 <?php
 require_once './models/Player/Player.php';
 class Helpers {
-	static function validatePost(array $post): bool {
-		self::prettyPrint($_POST);
-		return isset($post)
-			&& isset($post['name']) && !empty($post['name'])
-			&& isset($post['name1']) && !empty($post['name1'])
-			&& isset($post['hp']) && !empty($post['hp'])
-			&& isset($post['hp1']) && !empty($post['hp1'])
-			&& isset($post['dmg']) && !empty($post['dmg'])
-			&& isset($post['dmg1']) && !empty($post['dmg1'])
-			&& isset($post['race']) && !empty($post['race'])
-			&& isset($post['race1']) && !empty($post['race1'])
-			&& isset($post['shoutVictory']) && !empty($post['shoutVictory'])
-			&& isset($post['shoutVictory1']) && !empty($post['shoutVictory1'])
-			&& isset($post['shoutHit']) && !empty($post['shoutHit'])
-			&& isset($post['shoutHit1']) && !empty($post['shoutHit1']);
-	}
-
 	static function validatePlayers(array $players): array {
 		$defaultPlayerOne = new Player("DagDag", 60, 5, 'orc', new Shouts('Bien fait pour toi !', 'Ouuuugaaaaahhhh !!!'));
 		$defaultPlayerTwo = new Player("Elys", 45, 11, 'elf', new Shouts('Paix pour la nature.', 'Par les forces de la nature !'));
 		$playersArray = [PLAYER_ONE => $defaultPlayerOne, PLAYER_TWO => $defaultPlayerTwo];
 
 		foreach ($players as $key => $element) {
-
 			$shouts = null;
 			$player = null;
 			try {
-				$shoutVictory = $element['shoutVictory'];
-				$shoutHit = $element['shoutHit'];
+				list(shoutVictory => $shoutVictory, shoutHit => $shoutHit) = $element;
 				$shouts = new Shouts($shoutVictory, $shoutHit);
-				unset($element['shoutVictory']);
-				$element['shoutHit'] = $shouts;
+				unset($element[shoutVictory]);
+				$element[shoutHit] = $shouts;
 				$player = new Player(...array_values($element));
 				$playersArray[$key] = $player;
 			} catch (Error $error) {

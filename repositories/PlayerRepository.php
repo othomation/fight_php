@@ -35,7 +35,7 @@ class PlayerRepository {
 	public function getRandomRoles(): array {
 		$attackerIndex = rand(0, 1) === 1 ? PLAYER_ONE : PLAYER_TWO;
 		$attackedIndex = $attackerIndex === PLAYER_ONE ? PLAYER_TWO : PLAYER_ONE;
-		return [IS_ATTACKING => $this->players[$attackerIndex], IS_HIT => $this->players[$attackedIndex]];
+		return [ATTACKER => $this->players[$attackerIndex], ATTACKED => $this->players[$attackedIndex]];
 	}
 
 	public function getWinner() {
