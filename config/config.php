@@ -1,5 +1,5 @@
 <?php
-
+define('PLAYERS','PLAYERS');
 define('PLAYER_ONE', 'PLAYER_ONE');
 define('PLAYER_TWO', 'PLAYER_TWO');
 define('IS_ATTACKING', 'IS_ATTACKING');

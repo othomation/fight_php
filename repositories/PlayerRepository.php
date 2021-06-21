@@ -2,11 +2,13 @@
 require_once './config/config.php';
 
 class PlayerRepository {
+	public $basePlayers = [PLAYER_ONE => null, PLAYER_TWO => null];
 	protected array $players = [PLAYER_ONE => null, PLAYER_TWO => null];
 	public $winner = null;
 
 	public function __construct(Player $playerOne = null, Player $playerTwo = null) {
 		$this->setPlayers($playerOne, $playerTwo);
+		$this->basePlayers = $this->players;
 	}
 
 	private function setPlayers(Player $playerOne, Player $playerTwo) {
@@ -31,9 +33,9 @@ class PlayerRepository {
 
 
 	public function getRandomRoles(): array {
-		$isAttackingIndex = rand(0, 1) === 1 ? PLAYER_ONE : PLAYER_TWO;
-		$isHitIndex = $isAttackingIndex === PLAYER_ONE ? PLAYER_TWO : PLAYER_ONE;
-		return [IS_ATTACKING => $this->players[$isAttackingIndex], IS_HIT => $this->players[$isHitIndex]];
+		$attackerIndex = rand(0, 1) === 1 ? PLAYER_ONE : PLAYER_TWO;
+		$attackedIndex = $attackerIndex === PLAYER_ONE ? PLAYER_TWO : PLAYER_ONE;
+		return [IS_ATTACKING => $this->players[$attackerIndex], IS_HIT => $this->players[$attackedIndex]];
 	}
 
 	public function getWinner() {

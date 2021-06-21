@@ -1,3 +1,4 @@
+<?php require_once './bin/init.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,16 +11,11 @@
 </head>
 
 <body>
-	<?php require_once './bin/init.php'; ?>
 
 	<section id="players">
-		<?= Helpers::getPlayerCard($playerOne, 'one'); ?>
-		<?= Helpers::getPlayerCard($playerTwo, 'two'); ?>
+		<?= Helpers::getPlayerCard($game->playerRepository->basePlayers[PLAYER_ONE], 'one'); ?>
+		<?= Helpers::getPlayerCard($game->playerRepository->basePlayers[PLAYER_TWO], 'two'); ?>
 	</section>
-
-	<!-- START THE GAME ! -->
-	<?php $game->start(); ?>
-	<!-- GAME ENDED ! -->
 
 	<main>
 		<section id="rounds">

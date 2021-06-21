@@ -1,7 +1,8 @@
 <?php
-
+require_once './models/Player/Player.php';
 class Helpers {
 	static function validatePost(array $post): bool {
+		self::prettyPrint($_POST);
 		return isset($post)
 			&& isset($post['name']) && !empty($post['name'])
 			&& isset($post['name1']) && !empty($post['name1'])
@@ -15,6 +16,31 @@ class Helpers {
 			&& isset($post['shoutVictory1']) && !empty($post['shoutVictory1'])
 			&& isset($post['shoutHit']) && !empty($post['shoutHit'])
 			&& isset($post['shoutHit1']) && !empty($post['shoutHit1']);
+	}
+
+	static function validatePlayers(array $players): array {
+		$defaultPlayerOne = new Player("DagDag", 60, 5, 'orc', new Shouts('Bien fait pour toi !', 'Ouuuugaaaaahhhh !!!'));
+		$defaultPlayerTwo = new Player("Elys", 45, 11, 'elf', new Shouts('Paix pour la nature.', 'Par les forces de la nature !'));
+		$playersArray = [PLAYER_ONE => $defaultPlayerOne, PLAYER_TWO => $defaultPlayerTwo];
+
+		foreach ($players as $key => $element) {
+
+			$shouts = null;
+			$player = null;
+			try {
+				$shoutVictory = $element['shoutVictory'];
+				$shoutHit = $element['shoutHit'];
+				$shouts = new Shouts($shoutVictory, $shoutHit);
+				unset($element['shoutVictory']);
+				$element['shoutHit'] = $shouts;
+				$player = new Player(...array_values($element));
+				$playersArray[$key] = $player;
+			} catch (Error $error) {
+				return $playersArray;
+			}
+		}
+
+		return $playersArray;
 	}
 
 	static function prettyPrint(array $array) {

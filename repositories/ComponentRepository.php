@@ -6,13 +6,18 @@
  * pour pouvoir 'rollback' à l'été précedent ()
  */
 class ComponentsRepository {
+	private $baseQueue = [];
 	private array $queue = [];
 	private $result = null;
 
 	public function addComponent(string $component) {
 		array_push($this->queue, $component);
 	}
-
+	public function addComponents(...$components) {
+		foreach ($components as $component) {
+			array_push($this->queue, $component);
+		}
+	}
 	public function setResult(string $component) {
 		$this->result = $component;
 	}

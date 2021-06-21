@@ -9,9 +9,9 @@ class Game {
 	 * If set to true, game is running.
 	 */
 	private $state = false;
-	private PlayerRepository $playerRepository;
+	public PlayerRepository $playerRepository;
 	public ComponentsRepository $componentQueue;
-	
+
 	public function __construct(PlayerRepository $playerRepository, ComponentsRepository $componentQueue) {
 		$this->playerRepository = $playerRepository;
 		$this->componentQueue = $componentQueue;
@@ -22,15 +22,15 @@ class Game {
 		while ($this->state) {
 			$playersByRole = $this->playerRepository->getRandomRoles();
 
-			$isAttacking = $playersByRole[IS_ATTACKING];
-			$isHit = $playersByRole[IS_HIT];
+			$attacker = $playersByRole[IS_ATTACKING];
+			$attacked = $playersByRole[IS_HIT];
 
-			$isHitAlive = $isAttacking->attack($isHit);
+			$attackedAlive = $attacker->attack($attacked);
 
-			$this->componentQueue->addComponent(Helpers::getPlayerCardAttack($isAttacking, $isHit, $this->playerRepository->isPlayerOne($isAttacking)));
+			$this->componentQueue->addComponent(Helpers::getPlayerCardAttack($attacker, $attacked, $this->playerRepository->isPlayerOne($attacker)));
 
-			if (!$isHitAlive) {
-				$winner = $isAttacking;
+			if (!$attackedAlive) {
+				$winner = $attacker;
 				$this->playerRepository->setWinner($winner);
 				$this->stop();
 				return;
