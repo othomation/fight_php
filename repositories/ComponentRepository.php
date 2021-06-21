@@ -18,6 +18,7 @@ class ComponentsRepository {
 			array_push($this->queue, $component);
 		}
 	}
+	
 	public function setResult(string $component) {
 		$this->result = $component;
 	}
