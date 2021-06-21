@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Peut être modifié (enfin, refait.) pour s'en servir de gamestate.
+ * Pour stocker, dans un dictionnaire, les différentes 'rounds' (au sens 1 action)
+ * pour pouvoir 'rollback' à l'été précedent ()
+ */
 class ComponentsRepository {
 	private array $queue = [];
 	private $result = null;

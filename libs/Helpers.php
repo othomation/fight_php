@@ -56,8 +56,8 @@ EOT;
 	}
 
 	static function getPlayerCardAttack(Player $player, Player $enemy, $isPlayerOne): string {
-		$enemyHpMinusDmg = $enemy->getHp() + $player->getDmg();
 		$cssClass = $isPlayerOne ? 'one' : 'two';
+		$enemyHpMinusDmg = $enemy->getHp() + $player->getDmg();
 		$html = <<<EOT
 	<div class="card--round card--round">
 		<b class="card--round__head card--round__head--{$cssClass}">{$player->getShouts()->hit}</b>
